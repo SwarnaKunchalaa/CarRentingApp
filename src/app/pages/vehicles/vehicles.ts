@@ -34,9 +34,18 @@ export class Vehicles {
 
   onEdit(car: CarModel) {
     this.newCarObj = car;
+  }
 
-
-
+  onDelete(car: CarModel) {
+    this.http.delete<APIResponse>(`https://freeapi.miniprojectideas.com/api/CarRentalApp/DeleteCarbyCarId?carId=${car.carId}`)
+      .subscribe((res: APIResponse) => {
+        if (res.result) {
+          alert("Car deleted successfully");
+          this.getAllCars(); // Refresh the car list after deletion
+        } else {
+          alert("Failed to delete car: " + res.message);
+        }
+      });
   }
 
   onUpdateCar() {
