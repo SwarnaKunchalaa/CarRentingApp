@@ -12,11 +12,23 @@ import { FormsModule } from '@angular/forms';
 export class Booking {
 
   newBookingObj: BookingModel;
+  bookingList: BookingModel[] = [];
 
   http = inject(HttpClient);
 
   constructor() {
     this.newBookingObj = new BookingModel();
+  }
+
+  ngOnInit() {
+    this.getAllBookings();
+  }
+
+  getAllBookings() {
+    this.http.get('https://freeapi.miniprojectideas.com/api/CarRentalApp/geAllBookings')
+      .subscribe((res: any) => {
+        this.bookingList = res.data;
+      })
   }
 
   onSaveBooking() {

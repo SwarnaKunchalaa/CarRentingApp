@@ -8,16 +8,16 @@
         </div>
         <div class="card-body">
           <div class="row g-2">
-            @for (i of [1,2,3,4,5,6,7,8,9,10,11,12]; track $index) {
+            @for (i of bookingList; track $index) {
               <div class="col-6 col-md-4 col-lg-3">
                 <div class="card h-100 shadow-sm border-0 border-start border-4 border-warning compact-booking-card">
                   <div class="card-body p-2">
-                    <div class="fw-semibold text-warning mb-1">John Doe {{$index + 1}}</div>
+                    <div class="fw-semibold text-warning mb-1">{{i.customerName}}</div>
                     <div class="small text-muted">
-                      <div><i class="bi bi-geo-alt-fill me-1"></i>New York</div>
-                      <div><i class="bi bi-telephone-fill me-1"></i>+1 98765 43210</div>
-                      <div><i class="bi bi-calendar-date me-1"></i>20 Oct 2025</div>
-                      <div><i class="bi bi-cash-stack me-1"></i>$250</div>
+                      <div><i class="bi bi-geo-alt-fill me-1"></i>{{i.customerCity}}</div>
+                      <div><i class="bi bi-telephone-fill me-1"></i>{{i.mobileNo}}</div>
+                      <div><i class="bi bi-calendar-date me-1"></i>{{i.bookingDate}}</div>
+                      <div><i class="bi bi-cash-stack me-1"></i>{{i.totalBillAmount}}</div>
                     </div>
                   </div>
                   <div class="card-footer bg-light p-1 text-end">
