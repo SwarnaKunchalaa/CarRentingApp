@@ -8,7 +8,7 @@
         </div>
         <div class="card-body">
           <div class="row g-2">
-            @for (i of bookingList; track $index) {
+            @for (i of bookingsList; track $index) {
               <div class="col-6 col-md-4 col-lg-3">
                 <div class="card h-100 shadow-sm border-0 border-start border-4 border-warning compact-booking-card">
                   <div class="card-body p-2">
@@ -39,7 +39,7 @@
           Add Booking
         </div>
         <div class="card-body">
-          <form>
+          <!-- <form>
             <div class="row g-2">
               <div class="col-6">
                 <label class="form-label small mb-1">Customer Name</label>
@@ -81,7 +81,57 @@
             <div class="mt-3">
               <button (click)="onSaveBooking()" type="button" class="btn btn-warning w-100 btn-sm fw-semibold text-dark">Save Booking</button>
             </div>
+          </form> -->
+
+           <form [formGroup]="bookingForm" (ngSubmit)="onSaveBooking()">
+            <div class="row g-2">
+              <div class="col-6">
+                <label class="form-label small mb-1">Customer Name</label>
+                <input formControlName="customerName" type="text" class="form-control form-control-sm" placeholder="Name" name="customerName">
+              </div>
+              <div class="col-6">
+                <label class="form-label small mb-1">City</label>
+                <input formControlName="customerCity" type="text" class="form-control form-control-sm" placeholder="City" name="customerCity">
+              </div>
+
+              <div class="col-6">
+                <label class="form-label small mb-1">Mobile No</label>
+                <input formControlName="mobileNo"  type="text" class="form-control form-control-sm" placeholder="Mobile" name="mobileNo">
+              </div>
+              <div class="col-6">
+                <label class="form-label small mb-1">Email</label>
+                <input formControlName="email"  type="email" class="form-control form-control-sm" placeholder="Email" name="email">
+              </div>
+
+              <div class="col-6">
+                <label class="form-label small mb-1">Car ID</label>
+                <select formControlName="carId" class="form-select form-select-sm" name="carId">
+                  @for (car of carList; track $index) {
+                    <option value="{{car.carId}}">{{car.carId}}</option>
+                  }
+                </select>
+                <!-- <input formControlName="carId"  type="number" class="form-control form-control-sm" placeholder="Car ID" name="carId"> -->
+              </div>
+              <div class="col-6">
+                <label class="form-label small mb-1">Booking Date</label>
+                <input formControlName="bookingDate"  type="datetime-local" class="form-control form-control-sm" name="bookingDate">
+              </div>
+
+              <div class="col-6">
+                <label class="form-label small mb-1">Discount</label>
+                <input formControlName="discount"  type="number" class="form-control form-control-sm" placeholder="0" name="discount">
+              </div>
+              <div class="col-6">
+                <label class="form-label small mb-1">Total Bill</label>
+                <input formControlName="totalBillAmount"  name="totalBillAmount" type="number" class="form-control form-control-sm" placeholder="Total">
+              </div>
+            </div>
+
+            <div class="mt-3">
+              <button  type="submit" class="btn btn-warning w-100 btn-sm fw-semibold text-dark">Save Booking</button>
+            </div>
           </form>
+
         </div>
       </div>
     </div>
